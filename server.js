@@ -25,7 +25,7 @@ const corsOptions = {
 // DDOS prevention
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 200, // Limit each IP to 1000 requests per `window` (here, per 15 minutes)
+	max: 200, // Limit each IP to 200 requests per `window` (here, per 15 minutes)
 	standardHeaders: true,
 	legacyHeaders: false,
 });
@@ -77,7 +77,7 @@ app.prepare().then(() => {
 		if (err) {
 			console.error('Server failed to start:', err);
 			process.exit(1);
-		  }
+		}
 		console.log(`> Ready on http://localhost:${PORT}`);
 	});
 });
