@@ -15,12 +15,6 @@ npm
    cd isd-app
 3. Install dependencies:
    npm install
-4. Navigate to the Next.js (client) directory:
-   cd client
-5. Install dependencies for the Next.js app:
-   npm install
-
-[Remember to install the dependencies for both the Node/Express application and the client(subdirectory) NextJS application]
 
 ## Running the Application
 
@@ -31,7 +25,7 @@ To run the application in development mode, use the following command
 Inside the parent directory run:
 
 npm run dev <br>
-This will start the Node/Express backend using nodemon and the Next.js frontend. Access the application at http://localhost:3000.
+This will start the Node/Express backend using nodemon. Access the application at http://localhost:3000.
 
 ### Production Mode
 
@@ -39,9 +33,8 @@ To build and run the application in production mode, use the following commands
 
 Inside the parent directory run:
 
-npm run build <br>
 npm start <br>
-This will build the Next.js application and start the Node/Express server in production mode.
+This will build the application and start the Node/Express server in production mode.
 
 ### Environment varibles
 
