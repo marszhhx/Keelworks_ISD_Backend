@@ -1,5 +1,4 @@
 const express = require('express');
-const next = require('next');
 const morgan = require('morgan');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
@@ -32,52 +31,48 @@ const limiter = rateLimit({
 
 // Importing all keys that use .env file WILL USE LATER
 const keys = require('./config/keys');
-
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev, dir: 'client' });
-const handle = app.getRequestHandler();
+const server = express();
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 
-app.prepare().then(() => {
-	const server = express();
+server.set('trust proxy', 'loopback'); // Only trust requests from localhost
 
-	server.set('trust proxy', 'loopback'); // Only trust requests from localhost
+// Middleware
+server.use(limiter);
+server.use(cors(corsOptions));
+server.use(express.json());
+server.use(morgan('combined'));
+//! note: do we need helmet package?
 
-	// Middleware
-	server.use(limiter);
-	server.use(cors(corsOptions));
-	server.use(express.json());
-	server.use(morgan('combined'));
+// Error handling middleware
+server.use((err, req, res, next) => {
+	console.error(err.stack);
+	res.status(500).send('Internal Server Error');
+	next(err);
+});
 
-	// Error handling middleware
-	server.use((err, req, res, next) => {
-		console.error(err.stack);
-		res.status(500).send('Internal Server Error');
-		next(err);
-	});
+// Routes
+const routes = require('./routes/router.js');
+server.use(routes);
 
-	// Routes
-	const routes = require('./routes/router.js');
-	server.use(routes);
+// Conditional for dev and production modes
+// code below needs to be rewritten for production architecture
 
-	// Conditional for dev and production modes
-	if (!dev) {
-		const path = require('path');
-		server.use(express.static(path.join(__dirname, 'client', '.next')));
-		server.get('*', (req, res) => {
-			return handle(req, res);
-		});
-	} else {
-		server.all('*', (req, res) => {
-			return handle(req, res);
-		});
+// if (process.env.NODE_ENV === 'production') {
+// 	const path = require('path');
+
+// 	server.use(express.static('../client/build'));
+
+// 	server.get('*', (req, res) => {
+// 		res.sendFile(
+// 			path.resolve(__dirname, '..', 'client', 'build', 'index.html'),
+// 		);
+// 	});
+// }
+
+server.listen(PORT, err => {
+	if (err) {
+		console.error('Server failed to start:', err);
+		process.exit(1);
 	}
-
-	server.listen(PORT, err => {
-		if (err) {
-			console.error('Server failed to start:', err);
-			process.exit(1);
-		}
-		console.log(`> Ready on http://localhost:${PORT}`);
-	});
+	console.log(`> Ready on http://localhost:${PORT}`);
 });
