@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const Authentication = require('../controllers/authenication');
 
-// Test routes
+//! Fake test routes
+router.post('/signup', Authentication.signup);
+
 router.get('/test', (req, res) => {
 	try {
 		res.send({ hi: 'there' });

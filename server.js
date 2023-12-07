@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
+const sequelize = require('./config/database.js');
 
 // Uses .env in directory if not in production mode
 if (process.env.NODE_ENV !== 'production') {

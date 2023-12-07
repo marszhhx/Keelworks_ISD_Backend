@@ -27,6 +27,8 @@ Inside the parent directory run:
 npm run dev <br>
 This will start the Node/Express backend using nodemon. Access the application at http://localhost:3000.
 
+Note: Sequelize will use a local automated database called sqlite3 in development mode.
+
 ### Production Mode
 
 To build and run the application in production mode, use the following commands
