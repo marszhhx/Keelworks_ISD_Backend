@@ -29,6 +29,8 @@ const signup = async (req, res, next) => {
 			}).save();
 		}
 
+		//need to send auth token here to client either in cookie or to localstorage
+
 		res.status(200).send({ message: 'Signup successful' });
 	} catch (err) {
 		console.error('Error during signup:', err);
