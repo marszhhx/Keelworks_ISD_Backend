@@ -1,17 +1,38 @@
+const { User } = require('../config/database');
+
 const signup = async (req, res, next) => {
-	//! Fake logic for test route
+	//! fake logic just for test, rewrite later
+	const email = req.body.email;
+	const name = req.body.name;
+	const password = req.body.password;
 
-	const existingUser = true;
-	const existingEmail = true;
+	console.log(email, 'eemil');
 
-	if (existingUser || existingEmail) {
-		res.status(422).send({ error: 'Username or Email is in use' });
-	} else {
-		try {
-			res.status(200).send({ message: 'Signup successful' });
-		} catch (err) {
-			res.status(500).send('Failed Signup', err);
+	try {
+		const existingUser = await User.findOne({
+			where: {
+				email: email,
+			},
+		});
+
+		if (existingUser) {
+			return res
+				.status(422)
+				.send({ error: 'Username or Email is in use' });
+		} else {
+			// need to encrpt presave probably in the model
+			//! this saves password unhashed needs refactoring
+			const user = await new User({
+				email: email,
+				name: name,
+				password: password,
+			}).save();
 		}
+
+		res.status(200).send({ message: 'Signup successful' });
+	} catch (err) {
+		console.error('Error during signup:', err);
+		res.status(500).send('Failed Signup');
 	}
 };
 

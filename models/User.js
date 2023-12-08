@@ -8,7 +8,7 @@ const User = providedSequelize => {
 	sequelize = providedSequelize || require('../config/database');
 
 	const UserModel = sequelize.define('User', {
-		username: {
+		name: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
