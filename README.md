@@ -44,3 +44,26 @@ All environment variable files will be secure DO NOT PUSH THEM INTO THE REPO.
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+### Connecting to Database
+
+* Create .env file that contains:
+
+DB_NAME='db_name'
+DB_USER=username
+DB_PASSWORD=password
+
+* Run mysql shell:
+mysql -u username -p 
+enter password
+
+* Within mysql shell run the following commands:
+
+SOURCE db/schema.sql;
+USE db_name;
+
+* Exit mysql shell with the following command:
+quit;
+
+* Run the application:
+npm run dev
