@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-
+const bcrypt = require("bcrypt");
 let sequelize;
 
 //! test model replace later
@@ -8,6 +8,12 @@ const User = providedSequelize => {
 	sequelize = providedSequelize || require('../config/database');
 
 	const UserModel = sequelize.define('User', {
+		id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			primaryKey: true,
+			autoIncrement: true,
+		},
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -16,6 +22,9 @@ const User = providedSequelize => {
 			type: DataTypes.STRING,
 			allowNull: false,
 			unique: true,
+			// validate: {
+			// 	isEmail: true,
+			// }
 		},
 		password: {
 			type: DataTypes.STRING,
