@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
-// const loadModels = require('../models');
+const loadModels = require('../models');
 
 let sequelize;
 
