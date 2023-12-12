@@ -60,7 +60,7 @@ enter password
 * Within mysql shell run the following commands:
 
 SOURCE db/schema.sql;
-USE db_name;
+
 
 * Exit mysql shell with the following command:
 quit;
