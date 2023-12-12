@@ -17,17 +17,18 @@ if (process.env.NODE_ENV === 'production') {
 	// Use mySQL for development
 	sequelize = new Sequelize(
 		process.env.DB_NAME,
-        process.env.DB_USER,
-        process.env.DB_PASSWORD,
-        {
-            host: '127.0.0.1',
-            dialect: 'mysql',
-            port: 3306
-        }
+		process.env.DB_USER,
+		process.env.DB_PASSWORD,
+		{
+			host: '127.0.0.1',
+			dialect: 'mysql',
+			port: 3306,
+		},
 	);
 }
 
-// const models = loadModels(sequelize);
+// this loads all the sequelize models
+const models = loadModels(sequelize);
 
 sequelize
 	.sync({ force: false })
