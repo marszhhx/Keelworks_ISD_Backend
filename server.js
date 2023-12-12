@@ -3,6 +3,11 @@ const morgan = require('morgan');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 require('./config/database.js');
+const routes = require('./routes');
+
+
+// app.use(express.json());
+// app.use(routes);
 
 // Uses .env in directory if not in production mode
 if (process.env.NODE_ENV !== 'production') {
@@ -52,7 +57,8 @@ server.use((err, req, res, next) => {
 });
 
 // Routes
-const routes = require('./routes/router.js');
+
+// const routes = require('./routes/router.js');
 server.use(routes);
 
 // Conditional for dev and production modes
