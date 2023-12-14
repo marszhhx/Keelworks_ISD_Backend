@@ -45,10 +45,6 @@ const loadModels = sequelize => {
 				}
 
 				models[model.name] = model;
-
-				if (model.associate) {
-					model.associate(models);
-				}
 			} catch (error) {
 				console.warn(
 					`Warning: Error while loading file ${filePath}`,
@@ -56,6 +52,13 @@ const loadModels = sequelize => {
 				);
 			}
 		});
+
+	// Define associations after all models are loaded
+	Object.values(models).forEach(model => {
+		if (model.associate) {
+			model.associate(models);
+		}
+	});
 
 	return models;
 };

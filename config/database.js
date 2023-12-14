@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
 const models = loadModels(sequelize);
 
 sequelize
-	.sync({ force: false })
+	.sync({ force: true })
 	.then(() => {
 		console.log('Database and tables created!');
 

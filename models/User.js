@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 let sequelize;
 
 //! test model replace later
@@ -30,7 +30,20 @@ const User = providedSequelize => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		role: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 	});
+
+	UserModel.associate = models => {
+		UserModel.belongsToMany(models.Organization, {
+			through: 'OrganizationUser',
+		});
+		models.Organization.belongsToMany(UserModel, {
+			through: 'OrganizationUser',
+		});
+	};
 
 	return UserModel;
 };
