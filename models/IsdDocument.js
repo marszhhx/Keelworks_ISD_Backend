@@ -6,7 +6,7 @@ const IsdDocument = providedSequelize => {
 	sequelize = providedSequelize || require('../config/database');
 
 	const IsdDocumentModel = sequelize.define('IsdDocument', {
-		id: {
+		document_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,

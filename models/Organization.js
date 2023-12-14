@@ -24,6 +24,12 @@ const Organization = providedSequelize => {
 		});
 	};
 
+	OrganizationModel.associate = models => {
+		OrganizationModel.hasMany(models.IsdDocument, {
+			foreignKey: 'document_id',
+		});
+	};
+
 	return OrganizationModel;
 };
 
