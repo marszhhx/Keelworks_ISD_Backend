@@ -38,10 +38,12 @@ const User = providedSequelize => {
 
 	UserModel.associate = models => {
 		UserModel.belongsToMany(models.Organization, {
-			through: 'OrganizationUser',
+			through: 'OrganizationUsers',
+			foreignKey: 'user_id',
 		});
 		models.Organization.belongsToMany(UserModel, {
-			through: 'OrganizationUser',
+			through: 'OrganizationUsers',
+			foreignKey: 'user_id',
 		});
 	};
 

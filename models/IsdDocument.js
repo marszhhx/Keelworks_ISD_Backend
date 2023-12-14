@@ -23,8 +23,8 @@ const IsdDocument = providedSequelize => {
 	});
 
 	IsdDocumentModel.associate = models => {
-		IsdDocumentModel.hasMany(models.Organization, {
-			foreignKey: 'organization_id',
+		IsdDocumentModel.belongsTo(models.Organization, {
+			foreignKey: 'id',
 		});
 	};
 
