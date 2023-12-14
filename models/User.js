@@ -8,7 +8,7 @@ const User = providedSequelize => {
 	sequelize = providedSequelize || require('../config/database');
 
 	const UserModel = sequelize.define('User', {
-		id: {
+		user_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
@@ -30,20 +30,11 @@ const User = providedSequelize => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		role: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
 	});
 
 	UserModel.associate = models => {
-		UserModel.belongsToMany(models.Organization, {
-			through: 'OrganizationUsers',
-			foreignKey: 'user_id',
-		});
-		models.Organization.belongsToMany(UserModel, {
-			through: 'OrganizationUsers',
-			foreignKey: 'user_id',
+		UserModel.hasMany(models.Member, {
+			foreignKey: 'member_id',
 		});
 	};
 

@@ -24,7 +24,7 @@ const IsdDocument = providedSequelize => {
 
 	IsdDocumentModel.associate = models => {
 		IsdDocumentModel.belongsTo(models.Organization, {
-			foreignKey: 'id',
+			foreignKey: 'organization_id',
 		});
 	};
 

@@ -6,7 +6,7 @@ const Organization = providedSequelize => {
 	sequelize = providedSequelize || require('../config/database');
 
 	const OrganizationModel = sequelize.define('Organization', {
-		id: {
+		organization_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
@@ -19,11 +19,9 @@ const Organization = providedSequelize => {
 	});
 
 	OrganizationModel.associate = models => {
-		OrganizationModel.hasMany(models.IsdDocument, {
-			foreignKey: 'organization_id',
+		OrganizationModel.hasMany(models.Member, {
+			foreignKey: 'member_id',
 		});
-
-		OrganizationModel.hasMany(models.User, { foreignKey: 'id' });
 	};
 
 	return OrganizationModel;
