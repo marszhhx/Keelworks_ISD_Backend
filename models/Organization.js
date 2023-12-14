@@ -22,9 +22,7 @@ const Organization = providedSequelize => {
 		OrganizationModel.hasMany(models.Member, {
 			foreignKey: 'member_id',
 		});
-	};
 
-	OrganizationModel.associate = models => {
 		OrganizationModel.hasMany(models.IsdDocument, {
 			foreignKey: 'document_id',
 		});
