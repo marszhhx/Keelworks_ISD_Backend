@@ -7,7 +7,7 @@ let sequelize;
 if (process.env.NODE_ENV === 'production') {
 	// Set up your production database connection details here
 	sequelize = new Sequelize({
-		dialect: 'postgres',
+		dialect: 'mysql',
 		host: process.env.DB_HOST,
 		username: process.env.DB_USER,
 		password: process.env.DB_PASSWORD,
