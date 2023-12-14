@@ -2,7 +2,10 @@ const { DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 let sequelize;
 
-//! test model replace later
+UserModel.beforeCreate(async user => {
+	const hashedPassword = await bcrypt.hash(user.password, 10);
+	user.password = hashedPassword;
+});
 
 const User = providedSequelize => {
 	sequelize = providedSequelize || require('../config/database');
