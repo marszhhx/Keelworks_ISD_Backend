@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const User = require("./User");
 
 // Function to check if the required module is a valid Sequelize model definition
 const isValidModelDefinition = modelDefinition =>
@@ -63,4 +64,7 @@ const loadModels = sequelize => {
 	return models;
 };
 
-module.exports = loadModels;
+module.exports = {
+	User,
+	loadModels
+};
