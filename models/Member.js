@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 let sequelize;
 
@@ -18,14 +18,14 @@ const Member = providedSequelize => {
 		},
 	});
 
-	MemberModel.associate = models => {
-		MemberModel.belongsTo(models.User, {
-			foreignKey: 'user_id',
-		});
-		MemberModel.belongsTo(models.Organization, {
-			foreignKey: 'organization_id',
-		});
-	};
+	// MemberModel.associate = models => {
+	// 	MemberModel.belongsTo(models.User, {
+	// 		foreignKey: 'user_id',
+	// 	});
+	// 	MemberModel.belongsTo(models.Organization, {
+	// 		foreignKey: 'organization_id',
+	// 	});
+	// };
 
 	return MemberModel;
 };
