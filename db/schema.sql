@@ -7,18 +7,6 @@ USE isd_db;
 
 DROP TABLE IF EXISTS new_request_form, needs_analysis, objective, final_assessment_strat, course_structure, course_strategy_document, storyboard;
 
-CREATE TABLE new_request_form(
-    submission_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_name VARCHAR(255),
-    problem_statement TEXT,
-    problem_data TEXT,
-    value_of_change TEXT,
-    people_needed_to_attend INT,
-    expected_growth TEXT,
-    priority_urgency TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
 
 CREATE TABLE needs_analysis(
     submission_id INT PRIMARY KEY AUTO_INCREMENT,

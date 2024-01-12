@@ -41,4 +41,4 @@ sequelize
 		console.error('Error creating database and tables:', err);
 	});
 
-module.exports =  sequelize ;
+module.exports =  sequelize;
