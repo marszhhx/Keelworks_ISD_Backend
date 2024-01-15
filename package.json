@@ -16,7 +16,9 @@
 		"mysql2": "^3.6.5",
 		"nodemon": "^3.0.1",
 		"sequelize": "^6.35.1",
-		"sqlite3": "^5.1.6"
+		"sqlite3": "^5.1.6",
+		"js-cookie": "^2.2.1",
+		"jsonwebtoken": "^8.5.1"
 	},
 	"license": "MIT"
 }
