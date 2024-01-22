@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
 let sequelize;
 
 const User = providedSequelize => {
