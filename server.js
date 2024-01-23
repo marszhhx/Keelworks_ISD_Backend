@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
 }
 
-const whitelist = ['http://localhost:3000', 'add live hosting ip here'];
+const whitelist = ['http://localhost:5173', 'add live hosting ip here'];
 
 const corsOptions = {
 	origin: function (origin, callback) {
