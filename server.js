@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const jwt = require("jsonwebtoken");
 const rateLimit = require('express-rate-limit');
 require('./config/database.js');
 const routes = require('./routes');
@@ -42,7 +43,21 @@ server.set('trust proxy', 'loopback'); // Only trust requests from localhost
 server.use(limiter);
 server.use(cors(corsOptions));
 server.use(express.json());
+server.use((req, res, next) => {
+	if(!req.headers.token)
+		return res.status(401).json({success: false, message: "Please log in"})
+	let token = req.headers.token.split(" ")[1]
+	try{
+		jwt.verify(token, process.env.JWT_KEY,null,null)
+		next()
+	}
+	catch(err){
+		return res.status(401).json({success: false, message: "Please login in"})
+	}
+	next();
+});
 server.use(morgan('combined'));
+
 //! note: do we need helmet package?
 
 // Error handling middleware
