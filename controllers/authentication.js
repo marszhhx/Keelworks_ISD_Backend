@@ -4,25 +4,6 @@ const { User } = require('../models');
 const bcrypt = require('bcrypt');
 
 
-// const registerUser = async (req, res) => {
-// 	try {
-// 		console.log(req.body)
-// 		const salt = await bcrypt.genSalt(10);
-// 		const hashedPass = await bcrypt.hash(req.body.password, salt);
-// 		console.log("in try")
-// 		const newUser = await User.create({
-// 			name: req.body.name,
-// 			email: req.body.email,
-// 			password: hashedPass,
-// 		});
-		
-// 		res.status(201).json(newUser);
-// 		console.log('yes')
-// 	} catch (err) {
-// 		console.error(err);
-// 		res.status(500).json({ message: 'Internal server error' });
-// 	}
-// };
 
 const registerUser = async (req, res) => {
 	try {
@@ -43,24 +24,6 @@ const registerUser = async (req, res) => {
 		res.status(500).json({ message: 'Internal server error' });
 	}
 };
-
-// const loginUser = async (req, res) => {
-// 	try {
-// 		const user = await User.findOne({ where: { email: req.body.email } });
-		
-// 		if (!user) {
-// 			return res.status(400).json('Wrong credentials!');
-// 		}
-		
-// 		const validated = await bcrypt.compare(req.body.password, user.password);
-		
-// 		if (!validated) {
-// 			return res.status(400).json('Wrong credentials!');
-// 		}
-		
-// 		const { password, ...others } = user.toJSON();
-		
-// 		res.status(200).json(others);
 
 const loginUser = async (req, res) => {
 	try {
@@ -84,6 +47,57 @@ const loginUser = async (req, res) => {
 		res.status(500).json({ message: 'Internal server error' });
 	}
 };
+
+
+module.exports = {
+	// signup,
+	registerUser,
+	loginUser
+};
+
+//================ AUTHENTICATION & AUTHORIZATION [ DO NOT DELETE!!!!]==========================
+
+
+// const registerUser = async (req, res) => {
+// 	try {
+// 		console.log(req.body)
+// 		const salt = await bcrypt.genSalt(10);
+// 		const hashedPass = await bcrypt.hash(req.body.password, salt);
+// 		console.log("in try")
+// 		const newUser = await User.create({
+// 			name: req.body.name,
+// 			email: req.body.email,
+// 			password: hashedPass,
+// 		});
+		
+// 		res.status(201).json(newUser);
+// 		console.log('yes')
+// 	} catch (err) {
+// 		console.error(err);
+// 		res.status(500).json({ message: 'Internal server error' });
+// 	}
+// };
+
+
+
+// const loginUser = async (req, res) => {
+// 	try {
+// 		const user = await User.findOne({ where: { email: req.body.email } });
+		
+// 		if (!user) {
+// 			return res.status(400).json('Wrong credentials!');
+// 		}
+		
+// 		const validated = await bcrypt.compare(req.body.password, user.password);
+		
+// 		if (!validated) {
+// 			return res.status(400).json('Wrong credentials!');
+// 		}
+		
+// 		const { password, ...others } = user.toJSON();
+		
+// 		res.status(200).json(others);
+
 
 // const { User } = require('../config/database');
 // const {request} = require("express");
@@ -117,11 +131,6 @@ const loginUser = async (req, res) => {
 // };
 
 
-module.exports = {
-	// signup,
-	registerUser,
-	loginUser
-    
 // const login = async (req, res, next) => {
 // 	console.log(req.body);
 // 	const {email, password} = req.body
@@ -203,5 +212,3 @@ module.exports = {
 // 		res.status(500).send('Failed Signup');
 // 	}
 // };
-
-//=====================================

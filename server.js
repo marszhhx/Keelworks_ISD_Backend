@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 const rateLimit = require('express-rate-limit');
 require('./config/database.js');
 const routes = require('./routes');
