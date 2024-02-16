@@ -1,7 +1,7 @@
 const { Request } = require('../models'); 
 
 
-//CREATE Request
+//CREATE Request NO AUTHENTICATION
 const createRequest = async (req, res) => {
     try {
         console.log(req.body)
@@ -13,6 +13,8 @@ const createRequest = async (req, res) => {
         res.status(500).json({error: 'Error creating request' });
       }
 };
+
+// ====== AUTHENTICATION REQUEST [ DO NOT DELETE ]========
 
 // const createRequest = async (req, res) => {
 //     try {
@@ -41,32 +43,6 @@ const createRequest = async (req, res) => {
 // };
 
 
-    //UPDATE REQUEST
-
-
-    //DELETE REQUEST
-
-
-// GET REQUEST
-// const getRequest = async (req, res) => {
-//     try {
-//         // Find post by ID
-//         const requestId = req.params.id;
-//         const request = await Request.findByPk(requestId);
-    
-//         // Check if post exists
-//         if (!request) {
-//         res.status(404).json({ error: 'request not found' });
-//         return;
-//         }
-    
-//         // Send the post as JSON response
-//         res.status(200).json(request);
-//     } catch (err) {
-//         console.error("Error fetching request: ", err);
-//         res.status(500).json({ error: 'Error fetching request' });
-//     }
-// };
 
 const getAllRequests = async (req, res) => {
   try {
