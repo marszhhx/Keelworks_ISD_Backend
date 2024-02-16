@@ -19,7 +19,7 @@ Request.init(
         //     isEmail: true,
         // }
       },
-      SME: {
+      sme: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -39,20 +39,25 @@ Request.init(
         type: DataTypes.STRING,
         allowNull: false,
       },
-      Urgency: {
+      urgency: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      // user_id: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: true, 
-      // },
+      user_id: {
+        type: DataTypes.INTEGER,
+        reference: {
+          model: 'user',
+          key: 'id',
+        },
+      },
     },
     {
       sequelize,
-      modelName: 'Request',
+      modelName: 'request',
     }
-  );
+);
+
+
 
 
 module.exports = Request;

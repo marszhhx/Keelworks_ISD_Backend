@@ -1,4 +1,3 @@
-
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const bcrypt = require('bcrypt');
@@ -41,7 +40,7 @@ User.init(
   },
   {
     sequelize,
-    modelName: 'User',
+    modelName: 'user',
   }
 );
 
@@ -52,11 +51,8 @@ User.associate = (models) => {
 };
 
 // User.hasMany(Request, {
-//   foreignKey: 'user_id',
+//   foreignKey: 'userID',
 //   onDelete: 'CASCADE'
-// });
-// Request.belongsTo(User, {
-//   foreignkey: 'user_id'
 // });
 
 module.exports = User;
