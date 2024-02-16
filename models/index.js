@@ -65,6 +65,15 @@ const loadModels = sequelize => {
 	return models;
 };
 
+User.hasMany(Request, {
+	foreignKey: 'user_id',
+	onDelete: 'CASCADE'
+  });
+
+Request.belongsTo(User, {
+foreignKey: 'user_id',
+});
+
 module.exports = {
 	User,
 	Request,

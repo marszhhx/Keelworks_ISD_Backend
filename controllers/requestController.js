@@ -47,7 +47,7 @@ const createRequest = async (req, res) => {
     //DELETE REQUEST
 
 
-//GET REQUEST
+// GET REQUEST
 // const getRequest = async (req, res) => {
 //     try {
 //         // Find post by ID
@@ -68,10 +68,41 @@ const createRequest = async (req, res) => {
 //     }
 // };
 
+const getAllRequests = async (req, res) => {
+  try {
+      // Retrieve all requests from the database
+      const requestData = await Request.findAll();
+      
+      // Send the requests as JSON response
+      res.status(200).json(requestData);
+  } catch (err) {
+      console.error("Error fetching requests: ", err);
+      res.status(500).json({ error: 'Error fetching requests' });
+  }
+};
+
+const getSingleRequest = async (req, res) => {
+  try{
+    const requestData = await Request.findByPk(req.params.id, {
+      // include:{model: Tag, through: ProductTag} 
+    });
+    if(!requestData) {
+      res.status(404).json({message: "No request found with that id!"});
+      return;
+    }
+    res.status(200).json(requestData)
+
+  } catch (err) {
+    res.status(500).json(err)
+  }
+};
+
+
 
       
 module.exports = {
     createRequest,
-    // getRequest,
+    getAllRequests,
+    getSingleRequest,
 
 };

@@ -56,6 +56,8 @@ DB_PASSWORD=password
 -   Run mysql shell:
     mysql -u username -p
     enter password
+   
+    SOURCE db/schema.sql;
 
 -   Upon server startup the tables will be created if they dont exist through sequelize.
 
