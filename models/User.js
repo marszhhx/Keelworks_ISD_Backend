@@ -51,4 +51,12 @@ User.associate = (models) => {
   });
 };
 
+// User.hasMany(Request, {
+//   foreignKey: 'user_id',
+//   onDelete: 'CASCADE'
+// });
+// Request.belongsTo(User, {
+//   foreignkey: 'user_id'
+// });
+
 module.exports = User;
