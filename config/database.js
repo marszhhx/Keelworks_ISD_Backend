@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
-const loadModels = require('../models');
+// const loadModels = require('../models');
 
 let sequelize;
 
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // this loads all the sequelize models
-const models = loadModels(sequelize);
+// const models = loadModels(sequelize);
 
 sequelize
 	.sync({ force: false })
@@ -41,4 +41,4 @@ sequelize
 		console.error('Error creating database and tables:', err);
 	});
 
-module.exports = { sequelize };
+module.exports =  sequelize;

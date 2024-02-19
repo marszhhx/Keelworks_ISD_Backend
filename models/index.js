@@ -1,6 +1,8 @@
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const User = require("./User");
+const Request = require("./Request");
 
 // Function to check if the required module is a valid Sequelize model definition
 const isValidModelDefinition = modelDefinition =>
@@ -63,4 +65,17 @@ const loadModels = sequelize => {
 	return models;
 };
 
-module.exports = loadModels;
+User.hasMany(Request, {
+	foreignKey: 'user_id',
+	onDelete: 'CASCADE'
+  });
+
+Request.belongsTo(User, {
+foreignKey: 'user_id',
+});
+
+module.exports = {
+	User,
+	Request,
+	loadModels
+};
