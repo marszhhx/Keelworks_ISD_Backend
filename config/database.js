@@ -12,6 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 		username: process.env.DB_USER,
 		password: process.env.DB_PASSWORD,
 		database: process.env.DB_NAME,
+		port: process.env.DB_PORT
 	});
 } else {
 	// Use mySQL for development
@@ -20,9 +21,9 @@ if (process.env.NODE_ENV === 'production') {
 		process.env.DB_USER,
 		process.env.DB_PASSWORD,
 		{
-			host: '127.0.0.1',
+			host: process.env.DB_HOST,
 			dialect: 'mysql',
-			port: 3306,
+			port: process.env.DB_PORT,
 		},
 	);
 }
